@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import entities.CalculationService;
+import entities.Product;
+import services.CalculationService;
 
 public class Program {
 
@@ -15,7 +16,7 @@ public class Program {
 		
 		Locale.setDefault(Locale.US);
 		
-		List<Integer> list = new ArrayList<>();
+		List<Product> list = new ArrayList<>();
 		
 		String path = "C:\\Users\\DELL\\Desktop\\JAVA COMPLETO\\in2.txt";
 		
@@ -23,11 +24,12 @@ public class Program {
 			
 			String line = br.readLine();
 			while (line!=null) {
-				list.add(Integer.parseInt(line));
+				String[] filds = line.split(",");
+				list.add(new Product(filds[0], Double.parseDouble(filds[1])));
 				line = br.readLine();
 			}
 			
-			Integer x = CalculationService.max(list);
+			Product x = CalculationService.max(list);
 			System.out.println("Max: ");
 			System.out.println(x);
 		}
